@@ -6,10 +6,12 @@ public class Game {
   private int timesGet;
   private int timesAvoid;
   private String userPic = "images/user.gif"; 
+  private String bgPic = "images/danceBg.png"; 
   
   public Game() {
 
     grid = new Grid(5, 10);
+    grid.setBackground(bgPic);
     userRow = 3;
     msElapsed = 0;
     timesGet = 0;
