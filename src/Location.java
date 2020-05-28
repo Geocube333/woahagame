@@ -31,15 +31,7 @@ public class Location {
   public String toString() {
     return "(" + row + ", " + col + ")";
   }
-<<<<<<< HEAD
-  public void plusRow(int add) {
-    row+=add;
-  }
 
-  public void plusCol(int add) {
-    row+=add;
-  }
+
+  
 } 
-=======
-} 
->>>>>>> 38e754ee986fc39b767aab4b010732ddb73284fc
