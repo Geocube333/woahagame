@@ -23,4 +23,11 @@ public class Location {
   public String toString() {
     return "(" + row + ", " + col + ")";
   }
+  public void plusRow(int add) {
+    row+=add;
+  }
+
+  public void plusCol(int add) {
+    row+=add;
+  }
 } 

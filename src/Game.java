@@ -1,13 +1,17 @@
 public class Game {
 
-  private Grid grid;
+  private final Grid grid;
   private int userRow;
   private int msElapsed;
-  private int timesGet;
-  private int timesAvoid;
-  private String userPic = "images/user.gif"; 
-  private String bgPic = "images/danceBg.png"; 
-  private String arrowPic = "images/avoid.gif";
+  private final int timesGet;
+  private final int timesAvoid;
+  private final String userPic = "images/user.gif"; 
+  private final String bgPic = "images/danceBg.png"; 
+  private final String toparrow = "images/top arrow.png";
+  private final String downarrow = "images/downarrow.png";
+  private final String leftarrow = "images/leftarrow.png";
+  private final String rightarrow = "images/rightarrow.png";
+  private Location[] arrowMap = new Location[20];
   
   public Game() {
 
@@ -22,11 +26,11 @@ public class Game {
   }
   
   public void play() {
-
+    fillArrowMap();
     while (!isGameOver()) {
       grid.pause(100);
       handleKeyPress();
-      if (msElapsed % 300 == 0) {
+      if (msElapsed % 1000 == 0) {
         scrollLeft();
         populateTopEdge();
       }
@@ -38,7 +42,7 @@ public class Game {
   public void handleKeyPress(){
 
     //check last key pressed
-    int key = grid.checkLastKeyPressed();
+    final int key = grid.checkLastKeyPressed();
     System.out.println(key);
 
     //set "w" key to move the plane up
@@ -49,10 +53,10 @@ public class Game {
         }
         //change the field for userrow
         //shift the user picture up in the array
-        Location loc = new Location(userRow, 0);
+        final Location loc = new Location(userRow, 0);
         grid.setImage(loc, userPic);
         
-        Location oldLoc = new Location(userRow+1, 0);
+        final Location oldLoc = new Location(userRow+1, 0);
         grid.setImage(oldLoc, null);
 
   }
@@ -62,26 +66,57 @@ public class Game {
           userRow++;
         }
 
-        Location loc = new Location(userRow, 0);
+        final Location loc = new Location(userRow, 0);
         grid.setImage(loc, userPic);
         
-        Location oldLoc = new Location(userRow-1, 0);
+        final Location oldLoc = new Location(userRow-1, 0);
         grid.setImage(oldLoc, null);
       }
 
   }
-  
+  public void fillArrowMap() {
+    for(int i=0; i<arrowMap.length; i++) {
+      arrowMap[i]= new Location(i-20, (int)(Math.random()*4));
+    }
+   }
+
   public void populateTopEdge(){
-    Location arrowLoc= new Location(0, (int)(Math.random()*(4)+1));
-    grid.setImage(arrowLoc, arrowPic);
+    for(int i=0; i<arrowMap.length; i++) {
+      Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
+      arrowMap[i].plusRow(1);
+
+      if(arrowMap[i].getRow() > 0){
+        grid.setImage(arrowMap[i], toparrow);
+      	grid.setImage(oldMap, null);
+
+        grid.setImage(arrowMap[i], rightarrow);
+      	grid.setImage(oldMap, null);
+
+        grid.setImage(arrowMap[i], downarrow);
+        grid.setImage(oldMap, null);
+        
+        grid.setImage(arrowMap[i], leftarrow);
+      	grid.setImage(oldMap, null);
+
+
+
+    //final Location arrowLoc1= new Location(0, (int)(Math.random()*4));
+    //grid.setImage(arrowLoc1, toparrow);
+    //final Location arrowLoc2= new Location(0, (int)(Math.random()*4));
+    //grid.setImage(arrowLoc2, downarrow);
+    //final Location arrowLoc3= new Location(0, (int)(Math.random()*4));
+    //grid.setImage(arrowLoc3, leftarrow);
+    //final Location arrowLoc4= new Location(0, (int)(Math.random()*4));
+    //grid.setImage(arrowLoc4, rightarrow);
       }
-    
+    }
+  }
   
   public void scrollLeft(){
 
   }
   
-  public void handleCollision(Location loc) {
+  public void handleCollision(final Location loc) {
 
   }
   
@@ -97,8 +132,8 @@ public class Game {
     return false;
   }
    
-  public static void main(String[] args) {
-    Game game = new Game();
+  public static void main(final String[] args) {
+    final Game game = new Game();
     game.play();   
   }
 }
