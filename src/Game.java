@@ -5,6 +5,7 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
+  private String arrowPic = "images/avoid.gif";
   private String userPic = "images/user.gif"; 
   private String bgPic = "images/danceBg.png"; 
   
@@ -27,7 +28,7 @@ public class Game {
       handleKeyPress();
       if (msElapsed % 300 == 0) {
         scrollLeft();
-        populateRightEdge();
+        populateTop();
       }
       updateTitle();
       msElapsed += 100;
@@ -68,15 +69,23 @@ public class Game {
         grid.setImage(oldLoc, null);
       }
 
+      //DEBUG OPTIONS:
+
+      //Force a populateTop with P:
+      //
+      //if(key == 80){
+      //  populateTop();
+      //}
   }
   
-  public void populateRightEdge(){
-
+  public void populateTop(){
+    Location arrowLoc= new Location(0, (int)(Math.random()*(4)+1));
+    grid.setImage(arrowLoc, arrowPic);
   }
   
   public void scrollLeft(){
 
-  }
+  
   
   public void handleCollision(Location loc) {
 
