@@ -16,6 +16,14 @@ public class Location {
     return col;
   }
   
+  public void plusRow(int add) {
+    row+=add;
+  }
+
+  public void plusCol(int add) {
+    row+=add;
+  }
+
   public boolean equals(Location otherLoc) {
     return row == otherLoc.getRow() && col == otherLoc.getCol();
   }
