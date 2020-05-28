@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Game {
 
   private Grid grid;
@@ -5,6 +7,7 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
+  private Location[] arrowMap = new Location[20];
   private String arrowPic = "images/avoid.gif";
   private String userPic = "images/user.gif"; 
   private String bgPic = "images/danceBg.png"; 
@@ -23,6 +26,7 @@ public class Game {
   
   public void play() {
 
+    fillArrowMap();
     while (!isGameOver()) {
       grid.pause(100);
       handleKeyPress();
@@ -77,14 +81,32 @@ public class Game {
       //  populateTop();
       //}
   }
+
+  public void fillArrowMap() {
+   for(int i=0; i<arrowMap.length; i++) {
+     arrowMap[i]= new Location(i-20, (int)(Math.random()*4));
+   }
+  }
   
   public void populateTop(){
-    Location arrowLoc= new Location(0, (int)(Math.random()*(4)+1));
-    grid.setImage(arrowLoc, arrowPic);
+    //Location arrowLoc= new Location(0, (int)(Math.random()*4));
+    //grid.setImage(arrowLoc, arrowPic);
+    for(int i=0; i<arrowMap.length; i++) {
+      //System.out.println(arrowMap[i]);
+      Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
+      arrowMap[i].plusRow(1);
+      //if(arrowMap[i].getRow() > 5){
+      //  arrowMap = ArrayUtils.removeElement(arrowMap, i);
+      //}
+      if(arrowMap[i].getRow() > 0){
+        grid.setImage(arrowMap[i], arrowPic);
+	grid.setImage(oldMap, null);
+      }
+    }
   }
   
   public void scrollLeft(){
-
+  
   }
   
   public void handleCollision(Location loc) {
