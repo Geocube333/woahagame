@@ -85,7 +85,7 @@ public class Game {
   
   public void scrollLeft(){
 
-  
+  }
   
   public void handleCollision(Location loc) {
 
