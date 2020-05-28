@@ -85,6 +85,11 @@ public class Game {
       Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
       arrowMap[i].plusRow(1);
   
+    if(arrowMap[i].getRow() >= 5){
+        arrowMap[i].plusRow(-100);    //the 100 might need to be adjusted some other time.
+        grid.setImage(oldMap, null);
+      }
+	    
     if(arrowMap[i].getRow() > 0){
       if(arrowMap[i].getCol() == 0){
         grid.setImage(arrowMap[i], toparrow);
