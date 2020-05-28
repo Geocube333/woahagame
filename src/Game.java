@@ -2,9 +2,11 @@ public class Game {
 
   private Grid grid;
   private int userRow;
+  private int userCol;
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
+  private String arrowPic = "images/avoid.gif";
   private String userPic = "images/user.gif"; 
   private String bgPic = "images/danceBg.png"; 
   
@@ -13,6 +15,7 @@ public class Game {
     grid = new Grid(5, 10);
     grid.setBackground(bgPic);
     userRow = 3;
+    userCol = 5;
     msElapsed = 0;
     timesGet = 0;
     timesAvoid = 0;
@@ -64,13 +67,43 @@ public class Game {
         Location loc = new Location(userRow, 0);
         grid.setImage(loc, userPic);
         
-        Location oldLoc = new Location(userRow-1, 0);
+        Location oldLoc = new Location(userRow+1, 0);
         grid.setImage(oldLoc, null);
       }
+
+     //set A key to move to the left of plane 
+      if(key == 65){
+        if(!(userCol < 1)){
+          userCol--;
+        }
+        Location loc = new Location(0, userCol);
+        grid.setImage(loc, userPic);
+
+        Location oldlLoc = new Location(0,userCol);
+        grid.setImage(loc, null);
+      } 
+
+    //set D key to move to the right of plane
+     if(key == 68){
+     
+        if(!(userCol > grid.getNumCols()-2)){
+          userCol++;
+        }
+        Location loc = new Location(0,userCol);
+        grid.setImage(loc, userPic);
+ 
+        Location oldLoc = new Location(0,userCol-1);
+        grid.setImage(loc, null);
+      }
+
+      
+      
 
   }
   
   public void populateRightEdge(){
+    Location arrowLoc= new Location(0, (int)(Math.random()*(4)+1));
+    grid.setImage(arrowLoc, arrowPic);
 
   }
   
