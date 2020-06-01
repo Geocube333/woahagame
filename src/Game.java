@@ -8,10 +8,7 @@ public class Game {
   private int msElapsed;
   private int timesGet;
   private int timesAvoid;
-<<<<<<< HEAD
-=======
   private Location[] arrowMap = new Location[20];
->>>>>>> 12dc54393aa5154a628d35875e17ecdc72167a00
   private String arrowPic = "images/avoid.gif";
   private String userPic = "images/user.gif"; 
   private String bgPic = "images/danceBg.png"; 
