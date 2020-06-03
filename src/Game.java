@@ -4,16 +4,10 @@ public class Game {
   private int userRow;
   private int userCol;
   private int msElapsed;
-  private int timesGet;
-  private int timesAvoid;
-  private Location[] arrowMap = new Location[20];
-  private String arrowPic = "images/avoid.gif";
-  private String userPic = "images/user.gif"; 
-  private String bgPic = "images/danceBg.png"; 
-  private final int timesGet;
   private final int timesAvoid;
+  private final int timesGet;
   private final String userPic = "images/user.gif"; 
-  private final String bgPic = "images/danceBg.png"; 
+ // private final String bgPic = "images/danceBg.png"; 
   private final String toparrow = "images/top arrow.png";
   private final String downarrow = "images/downarrow.png";
   private final String leftarrow = "images/leftarrow.png";
@@ -21,10 +15,10 @@ public class Game {
   private Location[] arrowMap = new Location[20];
   
   public Game() {
-
+    
     grid = new Grid(5, 10);
-    grid.setBackground(bgPic);
-    userRow = 3;
+    //grid.setBackground(bgPic);
+    grid.setMovableBackground(bgPic, xOffset, yOffset, xScale, yScale);
     userCol = 5;
     msElapsed = 0;
     timesGet = 0;
@@ -63,7 +57,7 @@ public class Game {
         //shift the user picture up in the array
         final Location loc = new Location(userRow, 0);
         grid.setImage(loc, userPic);
-        
+        grid.
         final Location oldLoc = new Location(userRow+1, 0);
         grid.setImage(oldLoc, null);
 
@@ -117,7 +111,7 @@ public class Game {
    }
 
   public void populateTopEdge(){
-    for(int i=0; i<arrowMap.length; i++) {
+    for(int i=0; i<arrowMap.length-1; i++) {
       Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
       arrowMap[i].plusRow(1);
   
