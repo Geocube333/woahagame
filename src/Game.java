@@ -4,15 +4,24 @@ public class Game {
   private int userRow;
   private int userCol;
   private int msElapsed;
+<<<<<<< HEAD
   private final int timesAvoid;
   private final int timesGet;
   private final String userPic = "images/user.gif"; 
  // private final String bgPic = "images/danceBg.png"; 
+=======
+  private int score;
+  private Location[] arrowMap = new Location[50];
+  private String arrowPic = "images/avoid.gif";
+  private final int timesGet;
+  private final int timesAvoid;
+  //Not needed private final String userPic = "images/user.gif"; 
+  private final String bgPic = "images/danceBg.png"; 
+>>>>>>> 38753595a68797ed3d9b2e450937d74c99408354
   private final String toparrow = "images/top arrow.png";
   private final String downarrow = "images/downarrow.png";
   private final String leftarrow = "images/leftarrow.png";
   private final String rightarrow = "images/rightarrow.png";
-  private Location[] arrowMap = new Location[20];
   
   public Game() {
     
@@ -24,27 +33,26 @@ public class Game {
     timesGet = 0;
     timesAvoid = 0;
     updateTitle();
-    grid.setImage(new Location(userRow, 0), userPic);
+    //grid.setImage(new Location(userRow, 0), userPic);
   }
   
   public void play() {
     fillArrowMap();
     while (!isGameOver()) {
       grid.pause(100);
-      handleKeyPress();
+      //handleKeyPress(); //Causes issues with handleCollision()
       if (msElapsed % 500 == 0) {
-        scrollLeft();
         populateTopEdge();
+        handleCollision();
       }
       updateTitle();
       msElapsed += 100;
     }
   }
   
-  public void handleKeyPress(){
-
+  public int handleKeyPress(){
     //check last key pressed
-    final int key = grid.checkLastKeyPressed();
+    int key = grid.checkLastKeyPressed();
     System.out.println(key);
 
     //set "w" key to move the plane up
@@ -104,9 +112,10 @@ public class Game {
 
 
   }
+  
   public void fillArrowMap() {
     for(int i=0; i<arrowMap.length; i++) {
-      arrowMap[i]= new Location(i-20, (int)(Math.random()*4));
+      arrowMap[i]= new Location(i-arrowMap.length, (int)(Math.random()*4));
     }
    }
 
@@ -114,9 +123,9 @@ public class Game {
     for(int i=0; i<arrowMap.length-1; i++) {
       Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
       arrowMap[i].plusRow(1);
-  
+ 
     if(arrowMap[i].getRow() >= 5){
-        arrowMap[i].plusRow(-100);    //the 100 might need to be adjusted some other time.
+        arrowMap[i].plusRow(arrowMap.length*-100);    //the 100 might need to be adjusted some other time.
         grid.setImage(oldMap, null);
       }
 	    
@@ -150,17 +159,37 @@ public class Game {
       }
     }
   
-  
-  public void scrollLeft(){
+  public void handleCollision() {//final Location loc) {
+    Location[] hitReg = new Location[4];
+    
+    //this for loop is optional and not crucial to the code.
+    for(int i=0; i<hitReg.length; i++) {
+      hitReg[i] = new Location(4, i);
+      grid.setImage(hitReg[i], null); //null is just a place holder for now
+    }
 
-  }
-  
-  public void handleCollision(final Location loc) {
+    int lastKeyPressed = handleKeyPress();
+    System.out.println("last in: "+lastKeyPressed);
+    int lkp= -1;
+    if(lastKeyPressed == 87) {lkp=0;}
+    if(lastKeyPressed == 65) {lkp=1;}
+    if(lastKeyPressed == 83) {lkp=2;}
+    if(lastKeyPressed == 68) {lkp=3;}
 
+    System.out.println(lkp);
+
+    for(int i=0; i<arrowMap.length; i++) {
+      if(arrowMap[i].getRow() == 4 && arrowMap[i].getCol() == lkp) {
+        score+=1000;
+      }
+      else{
+        score-=1;
+      }
+    }
   }
   
   public int getScore() {
-    return 0;
+    return score;
   }
   
   public void updateTitle() {
