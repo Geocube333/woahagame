@@ -33,7 +33,7 @@ public class Game {
     fillArrowMap();
     while (!isGameOver()) {
       grid.pause(100);
-      //handleKeyPress();
+      //handleKeyPress(); //Causes issues with handleCollision()
       if (msElapsed % 500 == 0) {
         populateTopEdge();
         handleCollision();
@@ -102,7 +102,7 @@ public class Game {
     //this for loop is optional and not crucial to the code.
     for(int i=0; i<hitReg.length; i++) {
       hitReg[i] = new Location(4, i);
-      grid.setImage(hitReg[i], null); //get.gif is just a place holder for now
+      grid.setImage(hitReg[i], null); //null is just a place holder for now
     }
 
     int lastKeyPressed = handleKeyPress();
