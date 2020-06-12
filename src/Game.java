@@ -1,3 +1,14 @@
+/* Game Coders:Raphael Reyes, Geovanni Valentin, Yara Abdelrahman 
+ 
+Description of game: As coders we decided to make a rendition of Dance Dance Revolution. 
+Our game has been designed to be played on the computer. 
+We made our theme as a dance game. We had coded in the DDR background.
+We managed to use the "A,S,D,W" keys to let the player play with these buttons. 
+As long as the player doesn't miss an arrow 10 times, then they can continue playing until they lose all their lives.
+The game is relatively fast and you can keep playing until the song ends 
+We added in the song so that the arrows can go with the best of said song. 
+*/
+
 public class Game {
 
   private final Grid grid;
