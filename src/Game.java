@@ -9,9 +9,18 @@ public class Game {
   private final String userPic = "images/user.gif"; 
  // private final String bgPic = "images/danceBg.png"; 
   private int score;
-  private Location[] arrowMap = new Location[50];
+  private int rating;
+  private Location[] arrowMap = new Location[234];
+  private int moves=0;
   private String arrowPic = "images/avoid.gif";
+<<<<<<< HEAD
   //Not needed private final String userPic = "images/user.gif"; 
+=======
+  private final int timesGet;
+  private final int timesAvoid;
+  //Not needed private final String userPic = "images/user.gif";
+  private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
+>>>>>>> 8097c3cf1da44b361b4adc0407dc5a49f5272061
   private final String bgPic = "images/danceBg.png"; 
   private final String toparrow = "images/top arrow.png";
   private final String downarrow = "images/downarrow.png";
@@ -21,7 +30,13 @@ public class Game {
   public Game() {
     
     grid = new Grid(5, 10);
+<<<<<<< HEAD
     //grid.setBackground(bgPic);
+=======
+    grid.setBackground(bgPic);
+    rating= (grid.getNumRows()*arrowMap.length);//+(arrowMap.length*5);
+    userRow = 3;
+>>>>>>> 8097c3cf1da44b361b4adc0407dc5a49f5272061
     userCol = 5;
     msElapsed = 0;
     timesGet = 0;
@@ -38,10 +53,13 @@ public class Game {
       if (msElapsed % 500 == 0) {
         populateTopEdge();
         handleCollision();
+	moves++;
       }
       updateTitle();
       msElapsed += 100;
     }
+    System.out.println("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
+    audio.pauseSound();
   }
   
   public int handleKeyPress(){
@@ -115,42 +133,35 @@ public class Game {
   public void populateTopEdge(){
     for(int i=0; i<arrowMap.length-1; i++) {
       Location oldMap= new Location(arrowMap[i].getRow(), arrowMap[i].getCol());
+      Location nextMap= new Location(-1, -1);
+      if(i>0){nextMap= new Location(arrowMap[i-1].getRow(), arrowMap[i-1].getCol());}
       arrowMap[i].plusRow(1);
  
-    if(arrowMap[i].getRow() >= 5){
+      if(arrowMap[i].getRow() >= 5){
         arrowMap[i].plusRow(arrowMap.length*-100);    //the 100 might need to be adjusted some other time.
         grid.setImage(oldMap, null);
       }
 	    
-    if(arrowMap[i].getRow() > 0){
-      if(arrowMap[i].getCol() == 0){
-        grid.setImage(arrowMap[i], toparrow);
-      	grid.setImage(oldMap, null);
-      }
-      if(arrowMap[i].getCol() == 1){
-        grid.setImage(arrowMap[i], rightarrow);
-        grid.setImage(oldMap, null);
-      }
-      if(arrowMap[i].getCol() == 2){
-        grid.setImage(arrowMap[i], downarrow);
-        grid.setImage(oldMap, null);
-      }
-      if(arrowMap[i].getCol() == 3){
-        grid.setImage(arrowMap[i], leftarrow);
-      	grid.setImage(oldMap, null);
-      }
-    }
-
-    //final Location arrowLoc1= new Location(0, (int)(Math.random()*4));
-    //grid.setImage(arrowLoc1, toparrow);
-    //final Location arrowLoc2= new Location(0, (int)(Math.random()*4));
-    //grid.setImage(arrowLoc2, downarrow);
-    //final Location arrowLoc3= new Location(0, (int)(Math.random()*4));
-    //grid.setImage(arrowLoc3, leftarrow);
-    //final Location arrowLoc4= new Location(0, (int)(Math.random()*4));
-    //grid.setImage(arrowLoc4, rightarrow);
+      if(arrowMap[i].getRow() > 0){
+        if(arrowMap[i].getCol() == 0){
+          grid.setImage(arrowMap[i], toparrow);
+      	  if(nextMap.getCol()!=0){grid.setImage(oldMap, null);}
+        }
+        if(arrowMap[i].getCol() == 1){
+          grid.setImage(arrowMap[i], leftarrow);
+          if(nextMap.getCol()!=1){grid.setImage(oldMap, null);}
+        }
+        if(arrowMap[i].getCol() == 2){
+          grid.setImage(arrowMap[i], downarrow);
+          if(nextMap.getCol()!=2){grid.setImage(oldMap, null);}
+        }
+        if(arrowMap[i].getCol() == 3){
+          grid.setImage(arrowMap[i], rightarrow);
+      	  if(nextMap.getCol()!=3){grid.setImage(oldMap, null);}
+        }
       }
     }
+  }
   
   public void handleCollision() {//final Location loc) {
     Location[] hitReg = new Location[4];
@@ -162,22 +173,26 @@ public class Game {
     }
 
     int lastKeyPressed = handleKeyPress();
-    System.out.println("last in: "+lastKeyPressed);
+    //System.out.println("last in: "+lastKeyPressed);
     int lkp= -1;
     if(lastKeyPressed == 87) {lkp=0;}
     if(lastKeyPressed == 65) {lkp=1;}
     if(lastKeyPressed == 83) {lkp=2;}
     if(lastKeyPressed == 68) {lkp=3;}
 
-    System.out.println(lkp);
+    //System.out.println(lkp);
 
     for(int i=0; i<arrowMap.length; i++) {
       if(arrowMap[i].getRow() == 4 && arrowMap[i].getCol() == lkp) {
         score+=1000;
+	rating+=arrowMap.length+(int)(arrowMap.length*.1);
+	break;
       }
       else{
         score-=1;
+	rating-=1;
       }
+      //System.out.println(arrowMap[i]);
     }
   }
   
@@ -190,7 +205,7 @@ public class Game {
   }
   
   public boolean isGameOver() {
-    return false;
+    return rating<=arrowMap.length*-5 || moves>arrowMap.length+grid.getNumRows();
   }
    
   public static void main(final String[] args) {
