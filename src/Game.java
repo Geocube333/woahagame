@@ -4,8 +4,6 @@ public class Game {
   private int userRow;
   private int userCol;
   private int msElapsed;
-  private final int timesAvoid;
-  private final int timesGet;
   private final String userPic = "images/user.gif"; 
  // private final String bgPic = "images/danceBg.png"; 
   private int score;
@@ -13,14 +11,10 @@ public class Game {
   private Location[] arrowMap = new Location[234];
   private int moves=0;
   private String arrowPic = "images/avoid.gif";
-<<<<<<< HEAD
-  //Not needed private final String userPic = "images/user.gif"; 
-=======
   private final int timesGet;
   private final int timesAvoid;
   //Not needed private final String userPic = "images/user.gif";
   private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
->>>>>>> 8097c3cf1da44b361b4adc0407dc5a49f5272061
   private final String bgPic = "images/danceBg.png"; 
   private final String toparrow = "images/top arrow.png";
   private final String downarrow = "images/downarrow.png";
@@ -30,13 +24,10 @@ public class Game {
   public Game() {
     
     grid = new Grid(5, 10);
-<<<<<<< HEAD
     //grid.setBackground(bgPic);
-=======
     grid.setBackground(bgPic);
     rating= (grid.getNumRows()*arrowMap.length);//+(arrowMap.length*5);
     userRow = 3;
->>>>>>> 8097c3cf1da44b361b4adc0407dc5a49f5272061
     userCol = 5;
     msElapsed = 0;
     timesGet = 0;
