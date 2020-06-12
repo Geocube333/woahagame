@@ -4,20 +4,15 @@ public class Game {
   private int userRow;
   private int userCol;
   private int msElapsed;
-<<<<<<< HEAD
   private final int timesAvoid;
   private final int timesGet;
   private final String userPic = "images/user.gif"; 
  // private final String bgPic = "images/danceBg.png"; 
-=======
   private int score;
   private Location[] arrowMap = new Location[50];
   private String arrowPic = "images/avoid.gif";
-  private final int timesGet;
-  private final int timesAvoid;
   //Not needed private final String userPic = "images/user.gif"; 
   private final String bgPic = "images/danceBg.png"; 
->>>>>>> 38753595a68797ed3d9b2e450937d74c99408354
   private final String toparrow = "images/top arrow.png";
   private final String downarrow = "images/downarrow.png";
   private final String leftarrow = "images/leftarrow.png";
@@ -27,7 +22,6 @@ public class Game {
     
     grid = new Grid(5, 10);
     //grid.setBackground(bgPic);
-    grid.setMovableBackground(bgPic, xOffset, yOffset, xScale, yScale);
     userCol = 5;
     msElapsed = 0;
     timesGet = 0;
@@ -65,7 +59,6 @@ public class Game {
         //shift the user picture up in the array
         final Location loc = new Location(userRow, 0);
         grid.setImage(loc, userPic);
-        grid.
         final Location oldLoc = new Location(userRow+1, 0);
         grid.setImage(oldLoc, null);
 
@@ -109,7 +102,7 @@ public class Game {
         Location oldLoc = new Location(0,userCol-1);
         grid.setImage(loc, null);
       }
-
+   return key;
 
   }
   
