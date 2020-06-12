@@ -90,7 +90,7 @@ public class Grid extends JComponent implements KeyListener, MouseListener
 		this.yScale = yScale;
 		
 		backgroundImage = loadImage(imgName);
-		bgSet=true;
+		//bgSet=true;
 
 		repaint();
 	}
