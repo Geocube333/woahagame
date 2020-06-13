@@ -26,11 +26,12 @@ public class Game {
   private final int timesAvoid;
   private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
   private final String bgPic = "images/danceBg.png"; 
-  private final String toparrow = "images/top arrow.png";
-  private final String downarrow = "images/downarrow.png";
-  private final String leftarrow = "images/leftarrow.png";
-  private final String rightarrow = "images/rightarrow.png";
-  private final String white = "images/white tile.png";
+  private final String uparrow = "images/up.png";
+  private final String downarrow = "images/down.png";
+  private final String leftarrow = "images/left.png";
+  private final String rightarrow = "images/right.png";
+  //private final String white = "images/white tile.png";
+  private final Color white = new Color(255, 255, 255);
   private final int hitRow; 
   private final int numArrows = 4;
 
@@ -61,7 +62,7 @@ public class Game {
    for(int r = 0; r<hitRow; r++){
       for(int c = 0; c < numArrows; c++){
        Location loc = new Location(r, c);
-       grid.setImage(loc, white);
+       grid.setColor(loc, white);
      }
     }
   } 
@@ -165,20 +166,20 @@ public class Game {
 	    
       if(arrowMap[i].getRow() > 0){
         if(arrowMap[i].getCol() == 0){
-          grid.setImage(arrowMap[i], toparrow);
-      	  if(nextMap.getCol()!=0){grid.setImage(oldMap, white);}
+          grid.setImage(arrowMap[i], leftarrow);
+      	  if(nextMap.getCol()!=0){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 1){
-          grid.setImage(arrowMap[i], leftarrow);
-          if(nextMap.getCol()!=1){grid.setImage(oldMap, white);}
+          grid.setImage(arrowMap[i], uparrow);
+          if(nextMap.getCol()!=1){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 2){
           grid.setImage(arrowMap[i], downarrow);
-          if(nextMap.getCol()!=2){grid.setImage(oldMap, white);}
+          if(nextMap.getCol()!=2){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 3){
           grid.setImage(arrowMap[i], rightarrow);
-      	  if(nextMap.getCol()!=3){grid.setImage(oldMap, white);}
+      	  if(nextMap.getCol()!=3){grid.setImage(oldMap, null);}
         }
       }
     }
@@ -190,8 +191,8 @@ public class Game {
     int lastKeyPressed = handleKeyPress();
     //System.out.println("last in: "+lastKeyPressed);
     int lkp= -1;
-    if(lastKeyPressed == 87) {lkp=0;}
-    if(lastKeyPressed == 65) {lkp=1;}
+    if(lastKeyPressed == 65) {lkp=0;}
+    if(lastKeyPressed == 87) {lkp=1;}
     if(lastKeyPressed == 83) {lkp=2;}
     if(lastKeyPressed == 68) {lkp=3;}
 
