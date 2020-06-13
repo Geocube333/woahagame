@@ -55,10 +55,14 @@ public class Game {
 
   public void highlight(){
    for(int c = 0; c < numArrows; c++){
-    Location loc = new Location(hitRow, c);
-    grid.setColor(loc, new Color(255, 165, 0));
+    Location loc = new Location(hitRow -1 , c);
+    grid.setColor(loc, new Color(255, 165, 0));//orange
+
+    Location black = new Location(hitRow, c);
+    grid.setColor(black, new Color(0, 0, 0));//black
 
    }
+
    for(int r = 0; r<hitRow; r++){
       for(int c = 0; c < numArrows; c++){
        Location loc = new Location(r, c);
@@ -198,8 +202,11 @@ public class Game {
 
     //System.out.println(lkp);
     for(int c = 0; c < numArrows; c++){
-      Location loc = new Location(hitRow, c);
+      Location loc = new Location(hitRow -1, c);
       grid.setColor(loc, new Color(255, 165, 0));
+
+      Location black = new Location(hitRow, c);
+       grid.setColor(black, new Color(0, 0, 0));//black
   
     }
     for(int i=0; i<arrowMap.length; i++) {
