@@ -86,7 +86,7 @@ public class Game {
       msElapsed += 100;
     }
     System.out.println("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
-    audio.pauseSound();
+    //audio.pauseSound();
   }
   
   public int handleKeyPress(){
