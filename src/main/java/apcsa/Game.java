@@ -25,7 +25,7 @@ public class Game {
   private String arrowPic = "images/avoid.gif";
   private final int timesGet;
   private final int timesAvoid;
-  private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
+ // private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
   private final String bgPic = "images/danceBg.png"; 
   private final String uparrow = "images/up.png";
   private final String downarrow = "images/down.png";
@@ -37,8 +37,8 @@ public class Game {
   private final int numArrows = 4;
 
   public Game() {
-    
     grid = new Grid(9, 16);
+
     //grid.setBackground(bgPic);
     grid.setMovableBackground(bgPic, 700, 0, .5, .5);
     grid.fullscreen();
@@ -51,6 +51,9 @@ public class Game {
     hitRow = grid.getNumRows()-1;
     updateTitle();
     highlight();
+
+    grid.showMessageDialog("The Point of this game is to match the arrows falling down with the arrow keys W,A,S,D respective to their directionc \n" + "Each correct button pressed increases your score and each incorrect input decreases your score. \n " + "Try to get as many correct inputs as possible before");
+    
     //grid.setImage(new Location(userRow, 0), userPic);
   }
 
@@ -73,6 +76,8 @@ public class Game {
   } 
 
   public void play() {
+
+
     fillArrowMap();
     while (!isGameOver()) {
       grid.pause(100);
@@ -85,8 +90,11 @@ public class Game {
       updateTitle();
       msElapsed += 100;
     }
-    System.out.println("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
-    audio.pauseSound();
+    //HAVE SCREEN POP UP TO DISPLAY SCORE(HAVE MULTIPLE SCREEN USING GRID.CLOSE METHOD)
+    Grid grid2 = new Grid(9, 16);
+grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
+    //System.out.println();
+   // audio.pauseSound();
   }
   
   public int handleKeyPress(){

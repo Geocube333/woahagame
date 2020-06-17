@@ -18,7 +18,7 @@ public class Grid extends JComponent implements KeyListener, MouseListener
 	private Cell[][] cells;
 	private JFrame frame;
 	private int lastKeyPressed;
-	private Location lastLocationClicked;
+	public Location lastLocationClicked;
 	private Color lineColor;
 	private BufferedImage backgroundImage;
 	private boolean bgSet = false;
