@@ -53,7 +53,7 @@ public class Game {
     updateTitle();
     highlight();
 
-    grid.showMessageDialog("The Point of this game is to match the arrows falling down with the arrow keys W,A,S,D respective to their directionc \n" + "Each correct button pressed increases your score and each incorrect input decreases your score. \n " + "Try to get as many correct inputs as possible before");
+    grid.showMessageDialog("The Point of this game is to match the arrows falling down with the arrow keys W,A,S,D(W:Up, A:Left, S:Down, D: Right) \n" + "Each correct button pressed increases your score and each incorrect input decreases your score. \n " + "Try to get as many correct inputs as possible before the song ends and the arrows stop coming down.");
     
     //grid.setImage(new Location(userRow, 0), userPic);
   }
@@ -92,8 +92,15 @@ public class Game {
       msElapsed += 100;
     }
     //HAVE SCREEN POP UP TO DISPLAY SCORE(HAVE MULTIPLE SCREEN USING GRID.CLOSE METHOD)
-grid2 = new Grid(9, 16);
+    if(grid.checkLastLocationClicked() != null){
+      grid2 = new Grid(9, 16);
 grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
+      grid.close();
+      grid2.close();
+    }
+
+//AT THE END OF THE GAME, CLICK ANYWHERE TO EXTI THE GAME USING GRID.CLOSE AND GRID2.CLOSE(IF(GRID....)...  GRID.CLOSE & GRID2.CLOSE)
+
     //System.out.println();
    audio.pauseSound();
   }
