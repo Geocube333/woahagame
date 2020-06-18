@@ -23,8 +23,9 @@ public class Game {
   private int rating;
   private Location[] arrowMap = new Location[234];
   private int moves=0;
+  //private String character = "images/character.gif";
   private String arrowPic = "images/avoid.gif";
- private WavPlayer audio =new WavPlayer("audio/EnjoyYourself.wav"); 
+  private WavPlayer audio =new WavPlayer("audio/EnjoyYourself.wav"); 
   private final String bgPic = "images/danceBg.png"; 
   private final String uparrow = "images/up.png";
   private final String downarrow = "images/down.png";
@@ -32,18 +33,16 @@ public class Game {
   private final String rightarrow = "images/right.png";
   //private final String white = "images/white tile.png";
   private final Color white = new Color(255, 255, 255);
-  private final int hitRow; 
+  private final int hitRow;
+  Location charLoc = new Location(5, 6);
   private final int numArrows = 4;
 
   public Game() {
     grid = new Grid(9, 16);
-
     //grid.setBackground(bgPic);
     grid.setMovableBackground(bgPic, 700, 0, .5, .5);
     grid.fullscreen();
     rating= (grid.getNumRows()*arrowMap.length);//+(arrowMap.length*5);
-   // userRow = 3;
-   // userCol = 5;
     msElapsed = 0;
     hitRow = grid.getNumRows()-1;
     updateTitle();
@@ -79,7 +78,7 @@ public class Game {
     while (!isGameOver()) {
       grid.pause(100);
       //handleKeyPress(); //Causes issues with handleCollision()
-      if (msElapsed % 500 == 0) {
+      if (msElapsed % 250 == 0) {
         populateTopEdge();
         handleCollision();
 	moves++;
@@ -104,63 +103,7 @@ grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating)
     //check last key pressed
     int key = grid.checkLastKeyPressed();
     System.out.println(key);
-
-    
-  // //set "w" key to move the plane up
-  //   if(key == 87){
-  //       //check case where out of bounds
-  //       if(!(userRow < 1)){
-  //         userRow--;
-  //       }
-  //       //change the field for userrow
-  //       //shift the user picture up in the array
-  //       final Location loc = new Location(userRow, 0);
-  //       grid.setImage(loc, userPic);
-  //       final Location oldLoc = new Location(userRow+1, 0);
-  //       grid.setImage(oldLoc, null);
-
-
-
-  // }
-  //   //if I push down arrow, then plane goes down
-  //     if(key == 83){
-  //       if(!(userRow > grid.getNumRows()-2)){
-  //         userRow++;
-  //       }
-
-  //       final Location loc = new Location(userRow, 0);
-  //       grid.setImage(loc, userPic);
-        
-  //       final Location oldLoc = new Location(userRow-1, 0);
-  //       grid.setImage(oldLoc, null);
-  //     }
-
-  //      //set A key to move to the left of plane 
-  //      if(key == 65){
-  //       if(!(userCol < 1)){
-  //         userCol--;
-  //       }
-  //       Location loc = new Location(0, userCol);
-  //       grid.setImage(loc, userPic);
-
-  //       Location oldlLoc = new Location(0,userCol);
-  //       grid.setImage(loc, null);
-  //     } 
-
-  //   //set D key to move to the right of plane
-  //    if(key == 68){
-
-  //       if(!(userCol > grid.getNumCols()-2)){
-  //         userCol++;
-  //       }
-  //       Location loc = new Location(0,userCol);
-  //       grid.setImage(loc, userPic);
-
-  //       Location oldLoc = new Location(0,userCol-1);
-  //       grid.setImage(loc, null);
-  //     }
-   return key;
-
+    return key;
   }
   public void fillArrowMap() {
     for(int i=0; i<arrowMap.length; i++) {
@@ -211,6 +154,12 @@ grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating)
     if(lastKeyPressed == 87) {lkp=1;}
     if(lastKeyPressed == 83) {lkp=2;}
     if(lastKeyPressed == 68) {lkp=3;}
+    
+    //String tmp="images.character"+lkp+".gif";
+    grid.setImage(new Location(6, 7), "images/character"+lkp+".gif");
+    grid.setImage(new Location(8, 10), "images/character"+lkp+".gif");
+    grid.setImage(new Location(5, 8), "images/character"+lkp+".gif");
+    grid.setImage(new Location(7, 9), "images/character"+lkp+".gif");
 
     //System.out.println(lkp);
     for(int c = 0; c < numArrows; c++){
