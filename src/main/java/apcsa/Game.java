@@ -26,7 +26,7 @@ public class Game {
   private String arrowPic = "images/avoid.gif";
   private final int timesGet;
   private final int timesAvoid;
- // private WavPlayer audio =new WavPlayer("videos/EnjoyYourself.wav"); 
+ private WavPlayer audio =new WavPlayer("apcsa/videos/EnjoyYourself.wav"); 
   private final String bgPic = "images/danceBg.png"; 
   private final String uparrow = "images/up.png";
   private final String downarrow = "images/down.png";
@@ -95,7 +95,7 @@ public class Game {
 grid2 = new Grid(9, 16);
 grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
     //System.out.println();
-   // audio.pauseSound();
+   audio.pauseSound();
   }
   
   public int handleKeyPress(){
