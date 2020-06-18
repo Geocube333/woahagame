@@ -1,6 +1,6 @@
 package apcsa;
 /* Class that plays .wav files in the background:
- *  Date: 6/10/2018
+ *  Latest Update: 6/17/2020
  *  Based off of: https://www.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html
  *  
  *  You can convert an .mp3 file to a .wav file here:
@@ -9,8 +9,12 @@ package apcsa;
  * If you place the .wav file in your "src" folder,
  * and writing JUST the file name as the String input (ie. "fileName.wav")
  * 
+ * If you place the .wav file in a subfolder,
+ * make sure to include that subfolder in the path name (ie. "audio/fileName.wav")
+ * 
  * Version 2: Capability given to create multiple sound objects
  * Version 3: Works with runnable jars
+ * Version 4: Path easier to use with Maven
  * 
  */
 
@@ -35,6 +39,9 @@ public class WavPlayer {
 		try {
 			// Open an audio input stream.
 			//URL url = this.getClass().getClassLoader().getResource(wavMusicFile);
+			w = "apcsa/" + w;
+			System.out.println(w);
+
 			URL url = new File(w).toURI().toURL();
 
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
@@ -56,7 +63,8 @@ public class WavPlayer {
 	 * 
 	 */
 	public WavPlayer(String track) {
-		this.wavMusicFile = track;
+		this.wavMusicFile = "/apcsa/" + track;
+		System.out.println(wavMusicFile);
 		startSound();
 
 	}
@@ -68,7 +76,7 @@ public class WavPlayer {
 	public void startSound() {
 		try {
 			// Open an audio input stream.
-			URL url = this.getClass().getResource("/"+wavMusicFile);
+			URL url = this.getClass().getResource(wavMusicFile);
 			//System.out.println("url: " + url);
 				
 			AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
