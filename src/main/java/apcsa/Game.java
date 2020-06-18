@@ -24,8 +24,8 @@ public class Game {
   private Location[] arrowMap = new Location[234];
   private int moves=0;
   private String arrowPic = "images/avoid.gif";
- private WavPlayer audio =new WavPlayer("audio/EnjoyYourself.wav"); 
-  private final String bgPic = "images/danceBg.png"; 
+ //private WavPlayer audio =new WavPlayer("audio/EnjoyYourself.wav"); 
+  private final String logoPic = "images/danceBg.png"; 
   private final String uparrow = "images/up.png";
   private final String downarrow = "images/down.png";
   private final String leftarrow = "images/left.png";
@@ -37,9 +37,10 @@ public class Game {
 
   public Game() {
     grid = new Grid(9, 16);
-
-    //grid.setBackground(bgPic);
-    grid.setMovableBackground(bgPic, 700, 0, .5, .5);
+    //grid.setBackground(logoPic);
+    //grid.setMovableBackground(logoPic, 500, 0, .6, .6);
+    grid.setMultiCellImage(logoPic, new Location(1,5), 2,10);
+    
     grid.fullscreen();
     rating= (grid.getNumRows()*arrowMap.length);//+(arrowMap.length*5);
    // userRow = 3;
@@ -57,17 +58,17 @@ public class Game {
   public void highlight(){
    for(int c = 0; c < numArrows; c++){
     Location loc = new Location(hitRow -1 , c);
-    grid.setColor(loc, new Color(255, 165, 0));//orange
+    grid.setFillColor(loc, new Color(255, 165, 0));//orange
 
     Location black = new Location(hitRow, c);
-    grid.setColor(black, new Color(0, 0, 0));//black
+    grid.setFillColor(black, new Color(0, 0, 0));//black
 
    }
 
    for(int r = 0; r<hitRow; r++){
       for(int c = 0; c < numArrows; c++){
        Location loc = new Location(r, c);
-       grid.setColor(loc, white);
+       grid.setFillColor(loc, white);
      }
     }
   } 
@@ -97,7 +98,7 @@ grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating)
 
 
     //System.out.println();
-   audio.pauseSound();
+   //audio.pauseSound();
   }
   
   public int handleKeyPress(){
@@ -215,23 +216,23 @@ grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating)
     //System.out.println(lkp);
     for(int c = 0; c < numArrows; c++){
       Location loc = new Location(hitRow -1, c);
-      grid.setColor(loc, new Color(255, 165, 0));
+      grid.setFillColor(loc, new Color(255, 165, 0));
 
       Location black = new Location(hitRow, c);
-       grid.setColor(black, new Color(0, 0, 0));//black
+       grid.setFillColor(black, new Color(0, 0, 0));//black
   
     }
     for(int i=0; i<arrowMap.length; i++) {
       if(lkp != -1){
         Location targetLoc = new Location(hitRow, lkp);
         if(arrowMap[i].getRow() == hitRow && arrowMap[i].getCol() == lkp) {
-          grid.setColor(targetLoc, new Color(0, 255, 0)); //green
+          grid.setFillColor(targetLoc, new Color(0, 255, 0)); //green
           score+=1000;
           rating+=arrowMap.length+(int)(arrowMap.length*.1);
             break;
         }
        else{
-        grid.setColor(targetLoc, new Color(255, 0, 0)); //red
+        grid.setFillColor(targetLoc, new Color(255, 0, 0)); //red
         score-=1;
         	rating-=1;
         }
