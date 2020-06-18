@@ -14,6 +14,7 @@ We added in the song so that the arrows can go with the best of said song.
 public class Game {
 
   private final Grid grid;
+  private  Grid grid2;
   private int userRow;
   private int userCol;
   private int msElapsed;
@@ -91,7 +92,7 @@ public class Game {
       msElapsed += 100;
     }
     //HAVE SCREEN POP UP TO DISPLAY SCORE(HAVE MULTIPLE SCREEN USING GRID.CLOSE METHOD)
-    Grid grid2 = new Grid(9, 16);
+grid2 = new Grid(9, 16);
 grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating);
     //System.out.println();
    // audio.pauseSound();
