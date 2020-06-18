@@ -95,7 +95,6 @@ grid2.showMessageDialog("Here's your stats!\n Score:"+score+"\n Rating:"+rating)
       grid2.close();
     }
 
-//AT THE END OF THE GAME, CLICK ANYWHERE TO EXTI THE GAME USING GRID.CLOSE AND GRID2.CLOSE(IF(GRID....)...  GRID.CLOSE & GRID2.CLOSE)
 
     //System.out.println();
    audio.pauseSound();
