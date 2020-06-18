@@ -24,9 +24,7 @@ public class Game {
   private Location[] arrowMap = new Location[234];
   private int moves=0;
   private String arrowPic = "images/avoid.gif";
-  private final int timesGet;
-  private final int timesAvoid;
- private WavPlayer audio =new WavPlayer("apcsa/videos/EnjoyYourself.wav"); 
+ private WavPlayer audio =new WavPlayer("audio/EnjoyYourself.wav"); 
   private final String bgPic = "images/danceBg.png"; 
   private final String uparrow = "images/up.png";
   private final String downarrow = "images/down.png";
@@ -47,8 +45,6 @@ public class Game {
    // userRow = 3;
    // userCol = 5;
     msElapsed = 0;
-    timesGet = 0;
-    timesAvoid = 0;
     hitRow = grid.getNumRows()-1;
     updateTitle();
     highlight();
