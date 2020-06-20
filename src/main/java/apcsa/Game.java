@@ -38,10 +38,10 @@ public class Game {
   private final int numArrows = 4;
 
   public Game() {
-    grid = new Grid(9, 16);
+    grid = new Grid(6, 10);
     //grid.setBackground(logoPic);
     //grid.setMovableBackground(logoPic, 500, 0, .6, .6);
-    grid.setMultiCellImage(logoPic, new Location(1,5), 2,10);
+    grid.setMultiCellImage(logoPic, new Location(0,4), 2,grid.getNumCols()-4);
     
     grid.fullscreen();
     rating= (grid.getNumRows()*arrowMap.length);//+(arrowMap.length*5);
@@ -157,17 +157,13 @@ public class Game {
     if(lastKeyPressed == 83) {lkp=2;}
     if(lastKeyPressed == 68) {lkp=3;}
     
-    //String tmp="images.character"+lkp+".gif";
-    grid.setImage(new Location(6, 7), "images/character"+lkp+".gif");
-    grid.setImage(new Location(8, 10), "images/character"+lkp+".gif");
-    grid.setImage(new Location(5, 8), "images/character"+lkp+".gif");
-    grid.setImage(new Location(7, 9), "images/character"+lkp+".gif");
+    String tmp="images/character"+lkp+".gif";
+    grid.setImage(new Location(2, 7), tmp);
+    grid.setImage(new Location(3, 8), tmp);
+    grid.setImage(new Location(3, 6), tmp);
+    grid.setImage(new Location(4, 7), tmp);
 
 
-    grid.setImage(new Location(6, 7), "images/character"+lkp+".gif");
-    grid.setImage(new Location(8, 10), "images/character"+lkp+".gif");
-    grid.setImage(new Location(5, 8), "images/character"+lkp+".gif");
-    grid.setImage(new Location(7, 9), "images/character"+lkp+".gif");
     //System.out.println(lkp);
     for(int c = 0; c < numArrows; c++){
       Location loc = new Location(hitRow -1, c);

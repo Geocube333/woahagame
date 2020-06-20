@@ -363,10 +363,10 @@ public class Grid extends JComponent implements KeyListener, MouseListener
 				int mciWidth = xCells * cellSize;
 				int mciHeight = yCells * cellSize;
 
-				System.out.print("xcells:"+xCells);
-				System.out.print("\tycells:"+yCells);
-				System.out.print("\tmciW:"+mciWidth);
-				System.out.println("\tmciH:"+mciHeight);
+				// System.out.print("xcells:"+xCells);
+				// System.out.print("\tycells:"+yCells);
+				// System.out.print("\tmciW:"+mciWidth);
+				// System.out.println("\tmciH:"+mciHeight);
 
 				double mciRatio = (double) mciWidth/mciHeight;
 
@@ -383,21 +383,21 @@ public class Grid extends JComponent implements KeyListener, MouseListener
 				if (mciRatio > picRatio)	{
 					drawWidth = (int) (drawHeight * picRatio);
 					xStartPixel += (mciWidth - drawWidth) / 2;
-					System.out.println("mciRatio bigger");
+					//System.out.println("mciRatio bigger");
 				} else {
 					drawHeight = (int) (drawWidth / picRatio);
 					yStartPixel += (mciHeight - drawHeight) / 2;
-					System.out.println("picRatio bigger");
+					//System.out.println("picRatio bigger");
 				}
 				g.drawImage(mcBuff, xStartPixel, yStartPixel, drawWidth, drawHeight, null);
 
-				System.out.print("mciRatio:"+mciRatio);
-				System.out.print("\tpicRatio"+picRatio);
-				System.out.print("\txStartPixel"+xStartPixel);
-				System.out.print("\tyStartPixel"+yStartPixel);
-				System.out.print("\tdrawHeight"+drawHeight);
-				System.out.print("\tdrawWidth"+drawWidth);
-				System.out.println();
+				// System.out.print("mciRatio:"+mciRatio);
+				// System.out.print("\tpicRatio"+picRatio);
+				// System.out.print("\txStartPixel"+xStartPixel);
+				// System.out.print("\tyStartPixel"+yStartPixel);
+				// System.out.print("\tdrawHeight"+drawHeight);
+				// System.out.print("\tdrawWidth"+drawWidth);
+				// System.out.println();
 
 
 				//annotate all of the Cells covered by a McImage
