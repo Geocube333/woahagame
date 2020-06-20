@@ -125,22 +125,22 @@ public class Game {
         //grid.setImage(oldMap, null);
       }
 	    
-      if(arrowMap[i].getRow() > 0){
+      if(arrowMap[i].getRow() >= 0){
         if(arrowMap[i].getCol() == 0){
           grid.setImage(arrowMap[i], leftarrow);
-      	  if(nextMap.getCol()!=0){grid.setImage(oldMap, null);}
+      	  if(nextMap.getCol()!=0 && oldMap.getRow() != -1 ){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 1){
           grid.setImage(arrowMap[i], uparrow);
-          if(nextMap.getCol()!=1){grid.setImage(oldMap, null);}
+          if(nextMap.getCol()!=1 && oldMap.getRow() != -1){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 2){
           grid.setImage(arrowMap[i], downarrow);
-          if(nextMap.getCol()!=2){grid.setImage(oldMap, null);}
+          if(nextMap.getCol()!=2 && oldMap.getRow() != -1){grid.setImage(oldMap, null);}
         }
         if(arrowMap[i].getCol() == 3){
           grid.setImage(arrowMap[i], rightarrow);
-      	  if(nextMap.getCol()!=3){grid.setImage(oldMap, null);}
+      	  if(nextMap.getCol()!=3 && oldMap.getRow() != -1){grid.setImage(oldMap, null);}
         }
       }
     }
