@@ -7,6 +7,7 @@
   <groupId>apcsa</groupId>
   <artifactId>ddrgame</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging> jar </packaging>
 
   <name>ddrgame</name>
   <!-- FIXME change it to the project's website -->
@@ -30,6 +31,58 @@
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <!-- The .JAR file will execute by finding the main() method in the Game class -->
+        <plugin>
+
+          <groupId>
+            org.apache.maven.plugins
+          </groupId>
+
+          <artifactId>
+            maven-assembly-plugin
+          </artifactId>
+          
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>
+                  apcsa2020.Game
+                </mainClass>
+              </manifest>
+            </archive>
+            
+            <descriptorRefs>
+              <descriptorRef>
+                jar-with-dependencies
+              </descriptorRef>
+            </descriptorRefs>
+          </configuration>
+          
+          <executions>
+            <execution>
+              <id>
+                make-assembly
+              </id>
+              
+              <!-- this is used for inheritance merges -->
+              <phase>
+                package
+              </phase>
+              
+              <!-- bind to the packaging phase -->
+              <goals>
+                <goal>
+                  single
+                </goal>
+              </goals>
+            </execution>
+          </executions>
+        
+        </plugin>
+ 
+        
+        
+        
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
